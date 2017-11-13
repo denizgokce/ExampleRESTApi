@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	model "ExampleRESTApi/Models"
-	db "ExampleRESTApi/DataSource"
-	config "ExampleRESTApi/Config"
+	model "./Models"
+	db "./DataSource"
+	config "./Config"
 )
 
 func main() {
@@ -15,7 +15,6 @@ func main() {
 
 	db.GetInstance().People = append(db.GetInstance().People, model.Person{ID: "1", Firstname: "Nic", Lastname: "Raboy", Address: &model.Address{City: "Dublin", State: "CA"}})
 	db.GetInstance().People = append(db.GetInstance().People, model.Person{ID: "2", Firstname: "Maria", Lastname: "Raboy"})
-
 
 	log.Fatal(http.ListenAndServe(":5000", router)) //Listening the HTTP Requests at Port 5000
 

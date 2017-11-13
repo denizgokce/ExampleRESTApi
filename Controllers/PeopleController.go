@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"encoding/json"
-	model "ExampleRESTApi/Models"
-	db "ExampleRESTApi/DataSource"
+	model "../Models"
+	db "../DataSource"
 )
 
 

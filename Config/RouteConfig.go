@@ -2,7 +2,7 @@ package Config
 
 import (
 	"github.com/gorilla/mux"
-	controller "ExampleRESTApi/Controllers"
+	controller "../Controllers"
 )
 
 func InitializeRoutes(router *mux.Router){
