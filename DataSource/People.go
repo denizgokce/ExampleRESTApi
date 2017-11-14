@@ -1,7 +1,7 @@
 package DataSource
 
 import "sync"
-import model "../Models"
+import model "ExampleRESTApi/Models"
 
 type singleton struct {
 	People []model.Person
