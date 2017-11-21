@@ -7,6 +7,11 @@
 			"ImportPath": "github.com/gorilla/mux",
 			"Comment": "v1.6.0-1-g2d5fef0",
 			"Rev": "2d5fef06b891c971b14aa6f71ca5ab6c03a36e0e"
+		},
+		{
+			"ImportPath": "github.com/rs/cors",
+			"Comment": "v1.2-1-geabcc6a",
+			"Rev": "eabcc6af4bbe5ad3a949d36450326a2b0b9894b8"
 		}
 	]
 }
