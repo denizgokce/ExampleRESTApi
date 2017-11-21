@@ -4,8 +4,6 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	model "ExampleRESTApi/Models"
-	db "ExampleRESTApi/DataSource"
 	config "ExampleRESTApi/Config"
 	"os"
 	"fmt"
@@ -30,9 +28,6 @@ func main() {
 
 	router := mux.NewRouter()
 	config.InitializeRoutes(router) //Initializing The Routes Of Controllers
-
-	db.GetInstance().People = append(db.GetInstance().People, model.Person{ID: "1", Firstname: "Nic", Lastname: "Raboy" /*, Address: &model.Address{City: "Dublin", State: "CA"}*/ })
-	db.GetInstance().People = append(db.GetInstance().People, model.Person{ID: "2", Firstname: "Maria", Lastname: "Raboy"})
 
 	handler := cors.Default().Handler(router)
 
