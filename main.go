@@ -29,7 +29,16 @@ func main() {
 	router := mux.NewRouter()
 	config.InitializeRoutes(router) //Initializing The Routes Of Controllers
 
-	handler := cors.Default().Handler(router)
+	/*c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"X-Requested-With"},
+	})*/
+
+	c := cors.AllowAll()
+
+	handler := c.Handler(router)
 
 	fmt.Printf("Server is running in port %s...", addr)
 
