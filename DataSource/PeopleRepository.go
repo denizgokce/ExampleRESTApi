@@ -4,6 +4,8 @@ import (
 	model "ExampleRESTApi/Models"
 	"gopkg.in/mgo.v2/bson"
 	"log"
+	"gopkg.in/mgo.v2"
+	"strconv"
 )
 
 func GetPeople() []model.Person {
@@ -44,4 +46,19 @@ func UpdatePerson(id string, person *model.Person) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func getValueForNextSequence() int64 {
+	var doc model.Counter
+	GetInstance().dbContext.C("counter").Find(bson.M{}).Sort("-person_id").Limit(1).One(&doc)
+	change := mgo.Change{
+		Update:    bson.M{"$inc": bson.M{"sequence_value": 1}},
+		ReturnNew: true,
+	}
+	GetInstance().dbContext.C("counter").Find(bson.M{"_id": "person_id"}).Apply(change, &doc)
+	i, err := strconv.ParseInt(doc.Sequence_Value, 10, 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return i
 }
