@@ -4,8 +4,7 @@ import (
 	model "ExampleRESTApi/Models"
 	"gopkg.in/mgo.v2/bson"
 	"log"
-	"gopkg.in/mgo.v2"
-	"strconv"
+	"fmt"
 )
 
 func GetPeople() []model.Person {
@@ -28,6 +27,8 @@ func GetPerson(id string) model.Person {
 }
 
 func AddPerson(person *model.Person) {
+	//person.ID = strconv.Itoa(getValueForNextSequence())
+	//fmt.Println(person)
 	var err = GetInstance().dbContext.C("people").Insert(person)
 	if err != nil {
 		log.Fatal(err)
@@ -48,17 +49,19 @@ func UpdatePerson(id string, person *model.Person) {
 	}
 }
 
-func getValueForNextSequence() int64 {
+func getValueForNextSequence() int {
 	var doc model.Counter
-	GetInstance().dbContext.C("counter").Find(bson.M{}).Sort("-person_id").Limit(1).One(&doc)
-	change := mgo.Change{
+	GetInstance().dbContext.C("counter").Find(bson.M{"_id": "person_id"}).One(&doc)
+	fmt.Println(&doc)
+	/*change := mgo.Change{
 		Update:    bson.M{"$inc": bson.M{"sequence_value": 1}},
 		ReturnNew: true,
 	}
 	GetInstance().dbContext.C("counter").Find(bson.M{"_id": "person_id"}).Apply(change, &doc)
-	i, err := strconv.ParseInt(doc.Sequence_Value, 10, 64)
+	i, err := strconv.Atoi(doc.Sequence_Value)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return i
+	return i*/
+	return 0
 }

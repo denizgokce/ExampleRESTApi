@@ -11,6 +11,7 @@ func InitializeRoutes(router *mux.Router) {
 	router.HandleFunc("/people", controller.GetPeopleEndpoint).Methods("GET")
 	router.HandleFunc("/people/{id}", controller.GetPersonEndpoint).Methods("GET")
 	router.HandleFunc("/people/{id}", controller.CreatePersonEndpoint).Methods("POST")
+	//router.HandleFunc("/people", controller.CreatePersonEndpoint).Methods("POST")
 	router.HandleFunc("/people/{id}", controller.DeletePersonEndpoint).Methods("DELETE")
 	router.HandleFunc("/people/{id}", controller.UpdatePersonEndpoint).Methods("PUT")
 	//Configuring Static Page's Routes
