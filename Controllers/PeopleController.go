@@ -20,10 +20,10 @@ func GetPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
 }
 
 func CreatePersonEndpoint(w http.ResponseWriter, req *http.Request) {
-	params := mux.Vars(req)
+	//params := mux.Vars(req)
 	var person model.Person
 	_ = json.NewDecoder(req.Body).Decode(&person)
-	person.ID = params["id"]
+	//person.ID = params["id"]
 	db.AddPerson(&person)
 	json.NewEncoder(w).Encode(db.GetPeople())
 }
